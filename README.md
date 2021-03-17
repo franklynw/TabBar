@@ -2,6 +2,9 @@
 
 A SwiftUI TabView substitute (just for the DefaultTabViewStyle, ie, a tabBar at the foot of the screen), with a few customisation options and added extras.
 
+I approached this in a generic way to avoid the use of AnyView for each tab - supposedly there's a performance issue, but regardless of that, this approach uses the pure views.
+Because it's generic, it is limited to 10 tabs, though that's probably not going to be a problem...
+
 
 ## Installation
 
@@ -37,7 +40,7 @@ var body: some View {
 
 ## Initialisation
 
-You can initialise either with a published selection or without - if you use the selection, you can programmatically change the displayed tab. It currently supports up to 5 tab items, though it would be very easy to extend it to take more if you really needed them.
+You can initialise either with a published selection or without - if you use the selection, you can programmatically change the displayed tab. It currently supports up to 10 tab items.
 
 The views used for each tab must conform to the TabBarContainable protocol, detailed below.
 
@@ -105,13 +108,13 @@ struct MyView: TabBarContainable {
     let tabBarItem = TabBarItem(name: "Sleep", imageSystemName: "zzz")
 ```
 
-Used in its basic form, the tabBarItem is Int indexed, which means that to change tabs, you specify an index. An Int will be returned in the .tabChanged handler as well. You can also use String identifiers, which means that to change tab , you'd have to use that value - likewise, it will be returned in .tabChanged -
+Used in its basic form, the tabBarItem is Int indexed, which means that to change tabs, you specify an index. An Int will be returned in the .tabChanged handler as well. You can also use String identifiers, which means that to change tab, you'd have to use that value - likewise, it will be returned in .tabChanged -
 
 ```swift
 let tabBarItem = TabBarItem(name: "Sleep", imageSystemName: "zzz", identifier: "sleepTab")
 ```
 
-Currently, only Ints & Strings are supported as identifiers, but it would be easy enough to extend to other types if required.
+Currently, only Ints & Strings are supported as identifiers, but it would be easy enough to extend to other types if required. Note that if you use the Int-indexed items, any values you provide for the index are ignored, & it uses the display order for the idexing.
 
 
 ## Licence
