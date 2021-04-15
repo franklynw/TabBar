@@ -16,8 +16,6 @@ public struct TabBar<S, V1, V2, V3, V4, V5, V6, V7, V8, V9, V10> where V1: TC, V
      It is limited to 10 tabs, though that's probably not going to be a problem...
      */
     
-    typealias D = DummyTabBarView
-    
     private let item1: (() -> V1)?
     private let item2: (() -> V2)?
     private let item3: (() -> V3)?
@@ -52,39 +50,39 @@ public struct TabBar<S, V1, V2, V3, V4, V5, V6, V7, V8, V9, V10> where V1: TC, V
     }
     
     
-    public init(_ item1: @escaping () -> V1) where V2 == D<Int>, V3 == D<Int>, V4 == D<Int>, V5 == D<Int>, V6 == D<Int>, V7 == D<Int>, V8 == D<Int>, V9 == D<Int>, V10 == D<Int> {
+    public init(_ item1: @escaping () -> V1) where V2 == V1, V3 == V1, V4 == V1, V5 == V1, V6 == V1, V7 == V1, V8 == V1, V9 == V1, V10 == V1 {
         self.init(nil, item1, nil, nil, nil, nil, nil, nil, nil, nil, nil)
     }
     
-    public init(_ item1: @escaping () -> V1, _ item2: @escaping () -> V2) where V3 == D<Int>, V4 == D<Int>, V5 == D<Int>, V6 == D<Int>, V7 == D<Int>, V8 == D<Int>, V9 == D<Int>, V10 == D<Int> {
+    public init(_ item1: @escaping () -> V1, _ item2: @escaping () -> V2) where V3 == V1, V4 == V1, V5 == V1, V6 == V1, V7 == V1, V8 == V1, V9 == V1, V10 == V1 {
         self.init(nil, item1, item2, nil, nil, nil, nil, nil, nil, nil, nil)
     }
     
-    public init(_ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3) where V4 == D<Int>, V5 == D<Int>, V6 == D<Int>, V7 == D<Int>, V8 == D<Int>, V9 == D<Int>, V10 == D<Int> {
+    public init(_ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3) where V4 == V1, V5 == V1, V6 == V1, V7 == V1, V8 == V1, V9 == V1, V10 == V1 {
         self.init(nil, item1, item2, item3, nil, nil, nil, nil, nil, nil, nil)
     }
     
-    public init(_ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3, _ item4: @escaping () -> V4) where V5 == D<Int>, V6 == D<Int>, V7 == D<Int>, V8 == D<Int>, V9 == D<Int>, V10 == D<Int> {
+    public init(_ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3, _ item4: @escaping () -> V4) where V5 == V1, V6 == V1, V7 == V1, V8 == V1, V9 == V1, V10 == V1 {
         self.init(nil, item1, item2, item3, item4, nil, nil, nil, nil, nil, nil)
     }
     
-    public init(_ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3, _ item4: @escaping () -> V4, _ item5: @escaping () -> V5) where V6 == D<Int>, V7 == D<Int>, V8 == D<Int>, V9 == D<Int>, V10 == D<Int> {
+    public init(_ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3, _ item4: @escaping () -> V4, _ item5: @escaping () -> V5) where V6 == V1, V7 == V1, V8 == V1, V9 == V1, V10 == V1 {
         self.init(nil, item1, item2, item3, item4, item5, nil, nil, nil, nil, nil)
     }
     
-    public init(_ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3, _ item4: @escaping () -> V4, _ item5: @escaping () -> V5, _ item6: @escaping () -> V6) where V7 == D<Int>, V8 == D<Int>, V9 == D<Int>, V10 == D<Int> {
+    public init(_ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3, _ item4: @escaping () -> V4, _ item5: @escaping () -> V5, _ item6: @escaping () -> V6) where V7 == V1, V8 == V1, V9 == V1, V10 == V1 {
         self.init(nil, item1, item2, item3, item4, item5, item6, nil, nil, nil, nil)
     }
     
-    public init(_ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3, _ item4: @escaping () -> V4, _ item5: @escaping () -> V5, _ item6: @escaping () -> V6, _ item7: @escaping () -> V7) where V8 == D<Int>, V9 == D<Int>, V10 == D<Int> {
+    public init(_ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3, _ item4: @escaping () -> V4, _ item5: @escaping () -> V5, _ item6: @escaping () -> V6, _ item7: @escaping () -> V7) where V8 == V1, V9 == V1, V10 == V1 {
         self.init(nil, item1, item2, item3, item4, item5, item6, item7, nil, nil, nil)
     }
     
-    public init(_ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3, _ item4: @escaping () -> V4, _ item5: @escaping () -> V5, _ item6: @escaping () -> V6, _ item7: @escaping () -> V7, _ item8: @escaping () -> V8) where V9 == D<Int>, V10 == D<Int> {
+    public init(_ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3, _ item4: @escaping () -> V4, _ item5: @escaping () -> V5, _ item6: @escaping () -> V6, _ item7: @escaping () -> V7, _ item8: @escaping () -> V8) where V9 == V1, V10 == V1 {
         self.init(nil, item1, item2, item3, item4, item5, item6, item7, item8, nil, nil)
     }
     
-    public init(_ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3, _ item4: @escaping () -> V4, _ item5: @escaping () -> V5, _ item6: @escaping () -> V6, _ item7: @escaping () -> V7, _ item8: @escaping () -> V8, _ item9: @escaping () -> V9) where V10 == D<Int> {
+    public init(_ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3, _ item4: @escaping () -> V4, _ item5: @escaping () -> V5, _ item6: @escaping () -> V6, _ item7: @escaping () -> V7, _ item8: @escaping () -> V8, _ item9: @escaping () -> V9) where V10 == V1 {
         self.init(nil, item1, item2, item3, item4, item5, item6, item7, item8, item9, nil)
     }
     
@@ -93,39 +91,39 @@ public struct TabBar<S, V1, V2, V3, V4, V5, V6, V7, V8, V9, V10> where V1: TC, V
     }
     
     
-    public init(selection: Published<S>.Publisher, _ item1: @escaping () -> V1) where V2 == D<S>, V3 == D<S>, V4 == D<S>, V5 == D<S>, V6 == D<S>, V7 == D<S>, V8 == D<S>, V9 == D<S>, V10 == D<S> {
+    public init(selection: Published<S>.Publisher, _ item1: @escaping () -> V1) where V2 == V1, V3 == V1, V4 == V1, V5 == V1, V6 == V1, V7 == V1, V8 == V1, V9 == V1, V10 == V1 {
         self.init(selection, item1, nil, nil, nil, nil, nil, nil, nil, nil, nil)
     }
     
-    public init(selection: Published<S>.Publisher, _ item1: @escaping () -> V1, _ item2: @escaping () -> V2) where V3 == D<S>, V4 == D<S>, V5 == D<S>, V6 == D<S>, V7 == D<S>, V8 == D<S>, V9 == D<S>, V10 == D<S> {
+    public init(selection: Published<S>.Publisher, _ item1: @escaping () -> V1, _ item2: @escaping () -> V2) where V3 == V1, V4 == V1, V5 == V1, V6 == V1, V7 == V1, V8 == V1, V9 == V1, V10 == V1 {
         self.init(selection, item1, item2, nil, nil, nil, nil, nil, nil, nil, nil)
     }
     
-    public init(selection: Published<S>.Publisher, _ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3) where V4 == D<S>, V5 == D<S>, V6 == D<S>, V7 == D<S>, V8 == D<S>, V9 == D<S>, V10 == D<S> {
+    public init(selection: Published<S>.Publisher, _ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3) where V4 == V1, V5 == V1, V6 == V1, V7 == V1, V8 == V1, V9 == V1, V10 == V1 {
         self.init(selection, item1, item2, item3, nil, nil, nil, nil, nil, nil, nil)
     }
     
-    public init(selection: Published<S>.Publisher, _ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3, _ item4: @escaping () -> V4) where V5 == D<S>, V6 == D<S>, V7 == D<S>, V8 == D<S>, V9 == D<S>, V10 == D<S> {
+    public init(selection: Published<S>.Publisher, _ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3, _ item4: @escaping () -> V4) where V5 == V1, V6 == V1, V7 == V1, V8 == V1, V9 == V1, V10 == V1 {
         self.init(selection, item1, item2, item3, item4, nil, nil, nil, nil, nil, nil)
     }
     
-    public init(selection: Published<S>.Publisher, _ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3, _ item4: @escaping () -> V4, _ item5: @escaping () -> V5) where V6 == D<S>, V7 == D<S>, V8 == D<S>, V9 == D<S>, V10 == D<S> {
+    public init(selection: Published<S>.Publisher, _ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3, _ item4: @escaping () -> V4, _ item5: @escaping () -> V5) where V6 == V1, V7 == V1, V8 == V1, V9 == V1, V10 == V1 {
         self.init(selection, item1, item2, item3, item4, item5, nil, nil, nil, nil, nil)
     }
     
-    public init(selection: Published<S>.Publisher, _ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3, _ item4: @escaping () -> V4, _ item5: @escaping () -> V5, _ item6: @escaping () -> V6) where V7 == D<S>, V8 == D<S>, V9 == D<S>, V10 == D<S> {
+    public init(selection: Published<S>.Publisher, _ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3, _ item4: @escaping () -> V4, _ item5: @escaping () -> V5, _ item6: @escaping () -> V6) where V7 == V1, V8 == V1, V9 == V1, V10 == V1 {
         self.init(selection, item1, item2, item3, item4, item5, item6, nil, nil, nil, nil)
     }
     
-    public init(selection: Published<S>.Publisher, _ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3, _ item4: @escaping () -> V4, _ item5: @escaping () -> V5, _ item6: @escaping () -> V6, _ item7: @escaping () -> V7) where V8 == D<S>, V9 == D<S>, V10 == D<S> {
+    public init(selection: Published<S>.Publisher, _ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3, _ item4: @escaping () -> V4, _ item5: @escaping () -> V5, _ item6: @escaping () -> V6, _ item7: @escaping () -> V7) where V8 == V1, V9 == V1, V10 == V1 {
         self.init(selection, item1, item2, item3, item4, item5, item6, item7, nil, nil, nil)
     }
     
-    public init(selection: Published<S>.Publisher, _ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3, _ item4: @escaping () -> V4, _ item5: @escaping () -> V5, _ item6: @escaping () -> V6, _ item7: @escaping () -> V7, _ item8: @escaping () -> V8) where V9 == D<S>, V10 == D<S> {
+    public init(selection: Published<S>.Publisher, _ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3, _ item4: @escaping () -> V4, _ item5: @escaping () -> V5, _ item6: @escaping () -> V6, _ item7: @escaping () -> V7, _ item8: @escaping () -> V8) where V9 == V1, V10 == V1 {
         self.init(selection, item1, item2, item3, item4, item5, item6, item7, item8, nil, nil)
     }
     
-    public init(selection: Published<S>.Publisher, _ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3, _ item4: @escaping () -> V4, _ item5: @escaping () -> V5, _ item6: @escaping () -> V6, _ item7: @escaping () -> V7, _ item8: @escaping () -> V8, _ item9: @escaping () -> V9) where V10 == D<S> {
+    public init(selection: Published<S>.Publisher, _ item1: @escaping () -> V1, _ item2: @escaping () -> V2, _ item3: @escaping () -> V3, _ item4: @escaping () -> V4, _ item5: @escaping () -> V5, _ item6: @escaping () -> V6, _ item7: @escaping () -> V7, _ item8: @escaping () -> V8, _ item9: @escaping () -> V9) where V10 == V1 {
         self.init(selection, item1, item2, item3, item4, item5, item6, item7, item8, item9, nil)
     }
     
