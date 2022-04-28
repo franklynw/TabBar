@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-public protocol TabBarContainable: View {
-    associatedtype TabBarItemIdentifier: Hashable
-    var tabBarItem: TabBarItem<TabBarItemIdentifier> { get }
+public protocol TabBarContainable {
+    var tabBarItem: TabBarItem { get }
+    var tabBarItemView: AnyView { get }
 }

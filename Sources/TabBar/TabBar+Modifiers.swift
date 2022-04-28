@@ -12,7 +12,7 @@ extension TabBar {
   
     /// Provide a closure to be notified of tab changes - the parameter in the closure is the identifier of the tab item
     /// - Parameter tabbed: a closure which is invoked on tab change
-    public func tabChanged(_ tabbed: @escaping (S) -> ()) -> Self {
+    public func tabChanged(_ tabbed: @escaping (Int) -> ()) -> Self {
         var copy = self
         copy.tabbed = tabbed
         return copy
