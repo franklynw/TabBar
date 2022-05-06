@@ -19,25 +19,17 @@ extension TabBar {
     }
     
     /// Set the background of the tabBar - either a Color or a UIImage
-    /// - Parameter barBackground: a Publisher which emits background changes, which allows the background to dynamically update
-    public func barBackground(_ barBackground: Published<TabBarBackground>.Publisher) -> Self {
+    /// - Parameter barBackground: a TabBarBackground value
+    public func barBackground(_ barBackground: TabBarBackground) -> Self {
         var copy = self
         copy.barBackground = barBackground
         return copy
     }
     
-    /// Set the background of the tabBar - either a Color or a UIImage
-    /// - Parameter barBackground: a TabBarBackground value
-    public func barBackground(_ barBackground: TabBarBackground) -> Self {
-        var copy = self
-        copy.staticBarBackground = barBackground
-        return copy
-    }
-    
     /// The default behaviour is to fade from one item to the next, and to cross-dissolve background colour & image changes; use this modifier to make the changes instantaneous
-    public var disableBarAnimation: Self {
+    public var disableTabBarSelectionAnimation: Self {
         var copy = self
-        copy.animateBarChanges = false
+        copy.animateTabBarSelection = false
         return copy
     }
 }

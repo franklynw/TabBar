@@ -14,9 +14,8 @@ public struct TabBar {
     private let selection: Published<Int>.Publisher?
     
     internal var tabbed: ((Int) -> ())?
-    internal var barBackground: Published<TabBarBackground>.Publisher?
-    internal var staticBarBackground: TabBarBackground?
-    internal var animateBarChanges = true
+    internal var barBackground: TabBarBackground?
+    internal var animateTabBarSelection = true
     
     
     public init(selection: Published<Int>.Publisher? = nil, items: [() -> TabBarContainable]) {
@@ -34,6 +33,9 @@ extension TabBar: UIViewControllerRepresentable {
     }
     
     public func updateUIViewController(_ uiViewController: UITabBarController, context: Context) {
+        if let barBackground = barBackground {
+            context.coordinator.setBarBackground(barBackground)
+        }
     }
     
     public func makeCoordinator() -> Coordinator {
@@ -47,7 +49,6 @@ extension TabBar: UIViewControllerRepresentable {
         private let parent: TabBar
         
         private var selection: AnyCancellable?
-        private var setBackground: AnyCancellable?
         
         private var tabIdentifiers = [Int]()
         private var oldTabIdentifiers = [Int]()
@@ -64,32 +65,8 @@ extension TabBar: UIViewControllerRepresentable {
                     self?.setTab($0)
                 }
             
-            func setBarBackground(_ barBackground: TabBarBackground) {
-                
-                switch barBackground {
-                case .color(let color):
-                    tabBarController.tabBar.barTintColor = color != nil ? UIColor(color!) : nil
-                case .image(let image):
-                    tabBarController.tabBar.backgroundImage = image
-                }
-            }
-            
-            setBackground = parent.barBackground?
-                .sink { [weak self] background in
-                    guard let self = self else {
-                        return
-                    }
-                    if parent.animateBarChanges {
-                        UIView.transition(with: self.tabBarController.tabBar, duration: 0.2, options: .transitionCrossDissolve) {
-                            setBarBackground(background)
-                        }
-                    } else {
-                        setBarBackground(background)
-                    }
-                }
-            
-            if let staticBarBackground = parent.staticBarBackground {
-                setBarBackground(staticBarBackground)
+            if let barBackground = parent.barBackground {
+                setBarBackground(barBackground)
             }
             
             let viewControllers = makeTabBarViewControllers()
@@ -148,6 +125,44 @@ extension TabBar: UIViewControllerRepresentable {
         
         private func setTab(_ tabIdentifier: Int) {
             tabBarController.selectedIndex = tabIdentifier
+        }
+        
+        fileprivate func setBarBackground(_ barBackground: TabBarBackground) {
+            
+            let tabBarAppearance = UITabBarAppearance()
+            
+            let backgroundColor: UIColor?
+            let backgroundImage: UIImage?
+            
+            switch barBackground {
+            case .color(let color):
+                backgroundColor = color != nil ? UIColor(color!) : nil
+                backgroundImage = nil
+            case .image(let image):
+                backgroundColor = nil
+                backgroundImage = image
+            }
+            
+            func changeBackground() {
+                if #available(iOS 15.0, *) {
+                    tabBarAppearance.configureWithOpaqueBackground()
+                    tabBarAppearance.backgroundColor = backgroundColor
+                    tabBarAppearance.backgroundImage = backgroundImage
+                    self.tabBarController.tabBar.standardAppearance = tabBarAppearance
+                    self.tabBarController.tabBar.scrollEdgeAppearance = tabBarAppearance
+                } else {
+                    self.tabBarController.tabBar.barTintColor = backgroundColor
+                    self.tabBarController.tabBar.backgroundImage = backgroundImage
+                }
+            }
+            
+            if parent.animateTabBarSelection {
+                UIView.transition(with: tabBarController.view, duration: 0.3, options: .transitionCrossDissolve) {
+                    changeBackground()
+                } completion: { _ in }
+            } else {
+                changeBackground()
+            }
         }
     }
 }
