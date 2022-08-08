@@ -14,6 +14,13 @@ public struct TabBarItem {
     let imageSystemName: String?
     let identifier: Int
     
+    public init(name: String) {
+        self.name = name
+        imageName = nil
+        imageSystemName = nil
+        identifier = 0
+    }
+    
     public init(name: String, imageName: String) {
         self.name = name
         self.imageName = imageName

@@ -32,4 +32,10 @@ extension TabBar {
         copy.animateTabBarSelection = false
         return copy
     }
+    
+    public func centerButton(_ centerButton: UIView?) -> Self {
+        var copy = self
+        copy.centerButton = centerButton
+        return copy
+    }
 }

@@ -16,6 +16,7 @@ public struct TabBar {
     internal var tabbed: ((Int) -> ())?
     internal var barBackground: TabBarBackground?
     internal var animateTabBarSelection = true
+    internal var centerButton: UIView?
     
     
     public init(selection: Published<Int>.Publisher? = nil, items: [() -> TabBarContainable]) {
@@ -44,7 +45,7 @@ extension TabBar: UIViewControllerRepresentable {
     
     public class Coordinator: NSObject, UITabBarControllerDelegate {
 
-        let tabBarController = UITabBarController()
+        let tabBarController: FloatButtonTabBarController
         
         private let parent: TabBar
         
@@ -57,6 +58,7 @@ extension TabBar: UIViewControllerRepresentable {
         init(_ parent: TabBar) {
             
             self.parent = parent
+            tabBarController = FloatButtonTabBarController(centerButton: parent.centerButton)
             
             super.init()
             
@@ -164,5 +166,66 @@ extension TabBar: UIViewControllerRepresentable {
                 changeBackground()
             }
         }
+    }
+}
+
+
+class FloatButtonTabBarController: UITabBarController {
+    
+    private let centerButton: UIView?
+    
+    
+    init(centerButton: UIView?) {
+        self.centerButton = centerButton
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        guard let button = self.centerButton else {
+            return
+        }
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+
+        button.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        tabBar.addSubview(button)
+        
+        button.centerYAnchor.constraint(equalTo: tabBar.topAnchor).isActive = true
+        button.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor).isActive = true
+    }
+    
+    @objc
+    private func pressed() {
+        print("Pressed Record!")
+    }
+}
+
+
+class MyTabBar: UITabBar {
+    
+    convenience init(items: [UITabBarItem]) {
+        self.init()
+        translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        guard !clipsToBounds && !isHidden && alpha > 0 else { return nil }
+
+        for member in subviews.reversed() {
+            let subPoint = member.convert(point, from: self)
+            guard let result = member.hitTest(subPoint, with: event)
+            else { continue }
+            return result
+        }
+
+        return nil
     }
 }
